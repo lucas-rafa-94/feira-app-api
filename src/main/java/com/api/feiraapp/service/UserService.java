@@ -13,13 +13,18 @@ public class UserService {
 
     public ResponseApiModel save(UserModel userModel){
         ResponseApiModel responseApiModel = new ResponseApiModel();
-        try{
-            userRepository.save(userModel);
-            responseApiModel.setMsg("Usuário Criado com Sucesso");
-            responseApiModel.setCode(200);
-        }catch (Exception e){
-            responseApiModel.setMsg("Erro ao criar usuário");
-            responseApiModel.setCode(400);
+        if(userRepository.findByEmail(userModel.getEmail()) == null){
+            try{
+                userRepository.save(userModel);
+                responseApiModel.setMsg("Usuário Criado com Sucesso");
+                responseApiModel.setCode(200);
+            }catch (Exception e){
+                responseApiModel.setMsg("Erro ao criar usuário!");
+                responseApiModel.setCode(400);
+            }
+        }else{
+            responseApiModel.setMsg("Email já cadastrado!");
+            responseApiModel.setCode(300);
         }
         return responseApiModel;
     }
