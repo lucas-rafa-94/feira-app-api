@@ -11,8 +11,17 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void save(UserModel userModel){
-        userRepository.save(userModel);
+    public ResponseApiModel save(UserModel userModel){
+        ResponseApiModel responseApiModel = new ResponseApiModel();
+        try{
+            userRepository.save(userModel);
+            responseApiModel.setMsg("Usuário Criado com Sucesso");
+            responseApiModel.setCode(200);
+        }catch (Exception e){
+            responseApiModel.setMsg("Erro ao criar usuário");
+            responseApiModel.setCode(400);
+        }
+        return responseApiModel;
     }
 
     public ResponseApiModel login(String email, String password){

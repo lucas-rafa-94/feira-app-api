@@ -13,7 +13,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public void save(@RequestBody  UserModel userModel){
+    public ResponseApiModel save(@RequestBody  UserModel userModel){
         userService.save(userModel);
     }
 
