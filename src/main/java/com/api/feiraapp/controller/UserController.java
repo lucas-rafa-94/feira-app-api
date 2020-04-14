@@ -14,7 +14,7 @@ public class UserController {
 
     @PostMapping
     public ResponseApiModel save(@RequestBody  UserModel userModel){
-        userService.save(userModel);
+       return userService.save(userModel);
     }
 
     @PostMapping("/login")
