@@ -30,6 +30,25 @@ public class UserService {
         return responseApiModel;
     }
 
+    public ResponseApiModel update(UserModel userModel){
+        ResponseApiModel responseApiModel = new ResponseApiModel();
+
+        if(userRepository.findByEmail(userModel.getEmail()) != null){
+            try{
+                userRepository.save(userModel);
+                responseApiModel.setMsg("Usuário Criado com Sucesso");
+                responseApiModel.setCode(200);
+            }catch (Exception e){
+                responseApiModel.setMsg("Erro ao criar usuário!");
+                responseApiModel.setCode(400);
+            }
+        }else{
+            responseApiModel.setMsg("Usuário não existente!");
+            responseApiModel.setCode(300);
+        }
+        return responseApiModel;
+    }
+
     public UserModel login(String email, String password){
         ResponseApiModel responseApiModel = new ResponseApiModel();
 

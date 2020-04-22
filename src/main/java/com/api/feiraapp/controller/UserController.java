@@ -17,6 +17,11 @@ public class UserController {
        return userService.save(userModel);
     }
 
+    @PutMapping
+    public ResponseApiModel update(@RequestBody  UserModel userModel){
+        return userService.update(userModel);
+    }
+
     @PostMapping("/login")
     public UserModel login(@RequestParam String email, @RequestParam String password){
         return userService.login(email,password);
