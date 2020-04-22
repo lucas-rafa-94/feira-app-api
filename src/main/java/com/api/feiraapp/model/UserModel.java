@@ -19,9 +19,18 @@ public class UserModel {
     private String estado;
     private String numero;
     private String complemento;
+    private String cep;
 
 
     public UserModel() {
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getEndereco() {
