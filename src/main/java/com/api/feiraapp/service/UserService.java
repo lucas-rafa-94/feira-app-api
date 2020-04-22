@@ -13,6 +13,7 @@ public class UserService {
 
     public ResponseApiModel save(UserModel userModel){
         ResponseApiModel responseApiModel = new ResponseApiModel();
+
         if(userRepository.findByEmail(userModel.getEmail()) == null){
             try{
                 userRepository.save(userModel);
@@ -29,19 +30,19 @@ public class UserService {
         return responseApiModel;
     }
 
-    public ResponseApiModel login(String email, String password){
+    public UserModel login(String email, String password){
         ResponseApiModel responseApiModel = new ResponseApiModel();
 
         UserModel userModel = new UserModel();
         userModel = userRepository.findByEmailAndAndPassword(email, password);
 
-        if(userModel != null){
-            responseApiModel.setMsg("Credenciais Aceitas!");
-            responseApiModel.setCode(200);
-        }else {
-            responseApiModel.setMsg("Credenciais não Aceitas!");
-            responseApiModel.setCode(400);
-        }
-        return responseApiModel;
+//        if(userModel != null){
+//            responseApiModel.setMsg("Credenciais Aceitas!");
+//            responseApiModel.setCode(200);
+//        }else {
+//            responseApiModel.setMsg("Credenciais não Aceitas!");
+//            responseApiModel.setCode(400);
+//        }
+        return userModel;
     }
 }

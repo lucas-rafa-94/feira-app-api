@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseApiModel login(@RequestParam String email, @RequestParam String password){
+    public UserModel login(@RequestParam String email, @RequestParam String password){
         return userService.login(email,password);
     }
 }
