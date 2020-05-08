@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends CrudRepository<UserModel, String> {
+public interface UserRepository extends CrudRepository<UserModel, Long> {
     UserModel findByEmailAndAndPassword(String email, String password);
     UserModel findByEmail(String email);
 }
