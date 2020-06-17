@@ -7,6 +7,7 @@ import com.api.feiraapp.service.FeiraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,17 @@ public class FeiraController {
     }
 
     @GetMapping
-    public List<FeiraModel> findAll(){
+    public List<FeiraModel> findAll(HttpServletRequest request){
+        String remoteAddr = "";
+
+        if (request != null) {
+            remoteAddr = request.getHeader("X-FORWARDED-FOR");
+            if (remoteAddr == null || "".equals(remoteAddr)) {
+                remoteAddr = request.getRemoteAddr();
+            }
+        }
+
+        System.out.println(remoteAddr);
         return feiraService.findAll();
     }
 }
